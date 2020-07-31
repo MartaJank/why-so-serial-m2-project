@@ -1,6 +1,6 @@
 # Why so Serial?
 
-![logo](https://drive.google.com/file/d/1_42WLoDAoxOSkp_4UyZvYox2jIpqdcwK/view?usp=sharing)
+![logo]()
 
 ## Description
 
