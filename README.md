@@ -1,6 +1,6 @@
 # Why so Serial?
 
-![logo]()
+![logo](https://drive.google.com/file/d/1_42WLoDAoxOSkp_4UyZvYox2jIpqdcwK/view?usp=sharing)
 
 ## Description
 
@@ -59,7 +59,7 @@ Serial Killer model
 
 ```javascript
 {
- 	"image": String,
+  "image": String,
   "author": String,
   "name": String,
   "lastName": String,
