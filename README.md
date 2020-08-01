@@ -29,7 +29,7 @@ Search and collaborative Data Base platform for Serial Killers in which you can 
 
 ## Server Routes (back-end) 
 
-| **Method** | **Route**                  | **Description**                                              | **Request - Body **                                          |
+| **Method** | **Route**                  | **Description**                                              | **Request - Body**                                          |
 | ---------- | -------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | `GET`      | `/`                        | Main page route. Renders home `index` view.                  |                                                              |
 | `GET`      | `/killers`                 | Renders `killers` view.                                      |                                                              |
