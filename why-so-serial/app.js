@@ -7,10 +7,12 @@ const hbs = require('hbs');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
 mongoose
   .connect('mongodb://localhost/serial-killer', {
     useNewUrlParser: true,
