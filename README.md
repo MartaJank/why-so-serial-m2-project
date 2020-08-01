@@ -1,6 +1,6 @@
 # Why so Serial?
 
-![logo]()
+![logo](./why-so-serial/public/images/Untitled.png)
 
 ## Description
 
