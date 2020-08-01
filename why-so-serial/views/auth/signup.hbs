@@ -1,0 +1,38 @@
+<div class="form-wrapper">
+    <div class="form-bg">
+        <div class="form-container">
+            <div class="form-title">
+                <h2>Sign Up</h2>
+                {{#if errorMessage}}
+                <p class="error-message">
+                    {{ errorMessage }}
+                </p>
+                {{/if}}
+            </div>
+            <form class="form" action="/signup" method="post">
+                <div class="form-group">
+                    <input class="form-input" type="text" name="name" id="name-input" placeholder="Name">
+                    <label class="form-label" for="name-input">Name</label>
+                </div>
+                <div class="form-group">
+                    <input class="form-input" type="email" name="email" id="email-input" placeholder="Email">
+                    <label class="form-label" for="email-input">Email</label>
+                </div>
+                <div class="form-group">
+                    <input class="form-input" type="password" name="password" id="password-input" placeholder="*******">
+                    <label class="form-label" for="password-input">Password</label>
+                </div>
+                <div class="form-group">
+                    <button class="btn">Register</button>
+                </div>
+
+            </form>
+            <p>
+                Already have an account?
+                <a href="/login">
+                    Log in.
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
