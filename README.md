@@ -34,8 +34,8 @@ Search and collaborative Data Base platform for Serial Killers in which you can 
 | `GET`      | `/`                        | Main page route. Renders home `index` view.                  |                                                              |
 | `GET`      | `/killers`                 | Renders `killers` view.                                      |                                                              |
 | `GET`      | `/killers/details/:id`     | Renders `details` view.                                      |                                                              |
-| `DELETE`   | `/killers/details/:id`     | Executes delete button function and updated DB. Redirects to `killers` view. |                                                              |
-| `POST`     | `/killers/details/:id`     | Sends comments form data to the server, updates DB and renders `details` view. | {author, comment}                                            |
+| `DELETE`   | `/private/delete-killer/:id`     | Executes delete button function and updated DB. Redirects to `killers` view. |                                                              |
+| `POST`     | `/private/review-killer/:id`     | Sends comments form data to the server, updates DB and renders `details` view. | {author, comment}                                            |
 | `GET`      | `/login`                   | Renders `auth/login` form view.                              |                                                              |
 | `POST`     | `/login`                   | Sends Log In form data to the server and redirects to `profile` view. | {email, password}                                            |
 | `GET`      | `/signup`                  | Renders `auth/signup` form view.                             |                                                              |
@@ -49,7 +49,6 @@ Search and collaborative Data Base platform for Serial Killers in which you can 
 | `GET`      | `/private/edit-killer/:id` | Private route. Renders `edit-killer` form view.              |                                                              |
 | `PUT`      | `/private/edit-killer/:id` | Private route. Sends edit-killer info to server and updates killer in DB and in `killers` view. | {[imageUrl], author, name, lastName, aka, gender, birthDate, zodiacSign, yearsActive, numberOfVictimsConfirmed, numberOfVictimsPossible, country, weapons, arrested, victimProfile, murderType, description, books} |
 | `GET`      | `/private/cluedo`          | Private route. Renders `cluedo` view.                        |                                                              |
-| `POST`     | `/private/cluedo`          | Private route. Sends info from search bar and renders `cluedo-answer` view. | {searchInfo}                                                 |
 
 
 
@@ -60,7 +59,7 @@ Serial Killer model
 ```javascript
 {
   "image": String,
-  "author": String,
+  "author": { type: Schema.Types.ObjectId, ref: 'User' },
   "name": String,
   "lastName": String,
   "aka": String,
@@ -86,10 +85,11 @@ User model
 
 ```javascript
 {
-  "image": String,
+  "image": { type: String, default: '../images/avatar.png' },
   "name": String,
   "email": String,
-  "password": Strin
+  "password": String,
+  "isAuthor": { type: Boolean, default: false }
 }
 ```
 
@@ -99,8 +99,9 @@ Comment model
 
 ```javascript
 {
-  "author": String,
-  "comment": String
+  "author": { type: Schema.Types.ObjectId, ref: 'User' },
+  "comment": String,
+  "killerReviewed": { type: Schema.Types.ObjectId, ref: 'Killer' }
 }
 ```
 

@@ -2,8 +2,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const commentSchema = new Schema({
-    author: String,
+    author: { type: Schema.Types.ObjectId, ref: 'User' },
     comment: String,
+    killerReviewed: { type: Schema.Types.ObjectId, ref: 'Killer' }
 });
 
 commentSchema.set('timestamps', true);

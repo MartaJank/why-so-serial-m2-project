@@ -6,7 +6,7 @@ const userSchema = new Schema({
     name: String,
     email: String,
     password: String,
-    hasKiller: { type: Boolean, default: false }
+    isAuthor: { type: Boolean, default: false }
 });
 
 userSchema.set('timestamps', true);

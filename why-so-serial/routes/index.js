@@ -28,8 +28,18 @@ router.get('/killers', async(req, res, next) => {
   }
 });
 
-router.get('/killers/:id', (req, res, next) => {
-  res.render('details')
+router.get('/killers/:killerId', (req, res, next) => {
+  let killerId = req.params.killerId
+    Killer.findOne({'_id': killerId})
+    .then(killer => {
+      if (!killer) {
+          return res.status(404).render('not-found');
+      }
+      res.render("details", { killer })
+    })
+    .catch(next)
+  
+  //res.render('details')
 });
 
 module.exports = router;

@@ -1,5 +1,7 @@
 <h1>Killers</h1>
 {{#each killer}}
-<p>{{this.name}} {{this.lastName}}</p>
+<a href="/killers/{{this.id}}">
 <img src="{{this.image}}" alt="">
+<p>{{this.name}} {{this.lastName}}</p>
+</a>
 {{/each}}

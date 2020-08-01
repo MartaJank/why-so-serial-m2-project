@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const killerSchema = new Schema ({
     image: String,
-    author: String,
+    author: { type: Schema.Types.ObjectId, ref: 'User' },
     name: String,
     lastName: String,
     aka: String,
