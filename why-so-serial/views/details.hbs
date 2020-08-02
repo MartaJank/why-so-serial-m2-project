@@ -6,9 +6,13 @@
     </div>
     <div>
         <h1>{{killer.name}} {{killer.lastName}}</h1>
+        {{#if killer.aka}}
         <p><b>A.K.A.:</b> {{killer.aka}}</p>
+        {{/if}}
         <p><b>Date of Birth:</b> {{killer.birthDate}}</p>
+        {{#if killer.zodiacSign}}
         <p><b>Zodiac Sign:</b> {{killer.zodiacSign}}</p>
+        {{/if}}
         <p><b>Years Active:</b> 
         {{#if killer.yearsActive.[1]}}
             {{#each killer.yearsActive}}
@@ -19,7 +23,9 @@
         {{/if}}
         </p>
         <p><b>Country:</b> {{killer.country}}</p>
+        {{#if killer.arrested}}
         <p><b>Date of arrest:</b> {{killer.arrested}}</p>
+        {{/if}}
     </div>
 </div>
 <div>
