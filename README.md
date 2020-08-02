@@ -41,9 +41,9 @@ Search and collaborative Data Base platform for Serial Killers in which you can 
 | `GET`      | `/signup`                  | Renders `auth/signup` form view.                             |                                                              |
 | `POST`     | `/signup`                  | Sends Sign Up info to the server and creates user in the DB. Redirects to `auth/login` view. | {name, email, password}                                      |
 | `GET`      | `/logout`                  | Logges user out and redirects to `index` view.               |                                                              |
-| `GET`      | `/private/profile`         | Private route. Renders `profile` view.                       |                                                              |
-| `GET`      | `/private/edit-profile`    | Private route. Renders `edit-profile` form view.             |                                                              |
-| `PUT`      | `/private/edit-profile`    | Private route. Sends edit-profile info to server and updates user in DB and in `profile` view. | {[imageUrl], name, email, password}                          |
+| `GET`      | `/private/profile/:id`         | Private route. Renders `profile` view.                       |                                                              |
+| `GET`      | `/private/profile/:id/edit`    | Private route. Renders `edit-profile` form view.             |                                                              |
+| `PUT`      | `/private/profile/:id/edit`    | Private route. Sends edit-profile info to server and updates user in DB and in `profile` view. | {[imageUrl], name, email, password}                          |
 | `GET`      | `/private/add-killer`      | Private route. Renders `add-killer` form view.               |                                                              |
 | `POST`     | `/private/add-killer`      | Private route. Sends add-killer info to server and creates killer in DB. | {[imageUrl], author, name, lastName, aka, gender, birthDate, zodiacSign, yearsActive, numberOfVictimsConfirmed, numberOfVictimsPossible, country, weapons, arrested, victimProfile, murderType, description, books} |
 | `GET`      | `/private/edit-killer/:id` | Private route. Renders `edit-killer` form view.              |                                                              |
