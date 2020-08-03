@@ -1,0 +1,9 @@
+<h1>Killers</h1>
+
+
+{{#each killers}}
+<p>
+    <a href="killer/{{this.id}}">{{this.name}}{{this.lastName}}</a>
+    <a href="/edit-killer?killer_id={{this._id}}">EDIT</a>
+</p>
+{{/each}}

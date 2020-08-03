@@ -1,5 +1,17 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
+{{#if isUserLoggedIn}}
 <a href="/add-killer">
     <h2>Add Killer</h2>
 </a>
+<a href="/logout">
+    <h2>Log Out</h2>
+</a>
+{{else}}
+<a href="/login">
+    <h2>Log In</h2>
+</a>
+<a href="/signup">
+    <h2>Sign Up</h2>
+</a>
+{{/if}}
