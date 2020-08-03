@@ -38,8 +38,6 @@ router.get('/killers/:killerId', (req, res, next) => {
       res.render("details", { killer })
     })
     .catch(next)
-  
-  //res.render('details')
 });
 
 module.exports = router;
