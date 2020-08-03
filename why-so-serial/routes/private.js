@@ -3,15 +3,18 @@ var router = express.Router();
 
 const Killer = require('../models/Killer');
 const User = require('../models/User');
+const parser = require('./../config/cloudinary');
 
-/* router.use((req, res, next) => {
+
+router.use((req, res, next) => {
     if (req.session.currentUser) {
         next();
         return;
     }
 
     res.redirect('/login');
-}); */
+});
+
 router.get('/killers', (req, res, next) => {
     Killer.find()
         .then(allKillers => {
@@ -83,7 +86,7 @@ router.post('/edit-killer', (req, res, next) => {
         });
 });
 
-router.get('/killer/:killerId', (req, res, next) => {
+/* router.get('/killer/:killerId', (req, res, next) => {
     Killer.findById(req.params.killerId)
         .then(theKiller => {
             res.render('killer-details', { killer: theKiller });
@@ -91,11 +94,11 @@ router.get('/killer/:killerId', (req, res, next) => {
         .catch(error => {
             console.log('error:', error);
         });
-});
+}); */
 
 
 
-const parser = require('./../config/cloudinary');
+
 
 router.get('/profile/:id', (req, res, next) => {
     const userId = req.params.id;
