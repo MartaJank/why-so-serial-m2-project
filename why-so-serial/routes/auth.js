@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+
 const bcrypt = require('bcrypt');
 const saltRound = 10;
 
@@ -30,9 +31,6 @@ router.post('/signup', (req, res, next) => {
         return;
     }
 
-
-
-
     User.findOne({ email })
         .then((foundUser) => {
             if (foundUser) {
@@ -54,9 +52,6 @@ router.post('/signup', (req, res, next) => {
         })
         .catch((err) => console.log(err));
 });
-
-
-
 
 
 

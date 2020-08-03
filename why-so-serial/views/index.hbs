@@ -1,6 +1,9 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h1>Why so Serial</h1>
+<p>Welcome to Why so Serial</p>
 {{#if isUserLoggedIn}}
+<a href="/private/profile/{{currentUserInfo._id}}">
+    <h2>Profile</h2>
+</a>
 <a href="/private/add-killer">
     <h2>Add Killer</h2>
 </a>
@@ -15,7 +18,7 @@
     <h2>Sign Up</h2>
 </a>
 {{/if}}
-=======
+
 <img src="" alt="">
 <div>
     <p></p>
@@ -35,49 +38,51 @@
     <div>
         <button>A - Z</button>
         <div>
-            <a href="/killers">A</a>
-            <a href="/killers/b">B</a>
-            <a href="/killers/c">C</a>
-            <a href="/killers/d">D</a>
-            <a href="/killers/e">E</a>
-            <a href="/killers/f">F</a>
-            <a href="/killers/g">G</a>
-            <a href="/killers/h">H</a>
-            <a href="/killers/i">I</a>
-            <a href="/killers/j">J</a>
-            <a href="/killers/k">K</a>
-            <a href="/killers/l">L</a>
-            <a href="/killers/m">M</a>
-            <a href="/killers/n">N</a>
-            <a href="/killers/o">O</a>
-            <a href="/killers/p">P</a>
-            <a href="/killers/q">Q</a>
-            <a href="/killers/r">R</a>
-            <a href="/killers/s">S</a>
-            <a href="/killers/t">T</a>
-            <a href="/killers/u">U</a>
-            <a href="/killers/v">V</a>
-            <a href="/killers/w">W</a>
-            <a href="/killers/x">X</a>
-            <a href="/killers/y">Y</a>
-            <a href="/killers/z">Z</a>
+            <form action="/killers/alphabet/a"><button>A</button></form>
+            <form action="/killers/alphabet/b"><button>B</button></form>
+            <form action="/killers/alphabet/c"><button>C</button></form>
+            <form action="/killers/alphabet/d"><button>D</button></form>
+            <form action="/killers/alphabet/e"><button>E</button></form>
+            <form action="/killers/alphabet/f"><button>F</button></form>
+            <form action="/killers/alphabet/g"><button>G</button></form>
+            <form action="/killers/alphabet/h"><button>H</button></form>
+            <form action="/killers/alphabet/i"><button>I</button></form>
+            <form action="/killers/alphabet/j"><button>J</button></form>
+            <form action="/killers/alphabet/k"><button>K</button></form>
+            <form action="/killers/alphabet/l"><button>L</button></form>
+            <form action="/killers/alphabet/m"><button>M</button></form>
+            <form action="/killers/alphabet/n"><button>N</button></form>
+            <form action="/killers/alphabet/o"><button>O</button></form>
+            <form action="/killers/alphabet/p"><button>P</button></form>
+            <form action="/killers/alphabet/q"><button>Q</button></form>
+            <form action="/killers/alphabet/r"><button>R</button></form>
+            <form action="/killers/alphabet/s"><button>S</button></form>
+            <form action="/killers/alphabet/t"><button>T</button></form>
+            <form action="/killers/alphabet/u"><button>U</button></form>
+            <form action="/killers/alphabet/v"><button>V</button></form>
+            <form action="/killers/alphabet/w"><button>W</button></form>
+            <form action="/killers/alphabet/x"><button>X</button></form>
+            <form action="/killers/alphabet/y"><button>Y</button></form>
+            <form action="/killers/alphabet/z"><button>Z</button></form>
         </div>
     </div>
     <div>
         <button>Zodiac Sign</button>
         <div>
-            <a href="">Aries</a>
-            <a href="">Taurus</a>
-            <a href="">Gemini</a>
-            <a href="">Cancer</a>
-            <a href="">Leo</a>
-            <a href="">Virgo</a>
-            <a href="">Libra</a>
-            <a href="">Scorpio</a>
-            <a href="">Sagittarius</a>
-            <a href="">Capricorn</a>
-            <a href="">Aquarius</a>
-            <a href="">Pisces</a>
+            <form action="/killers/search/Aries"><button>Aries</button></form>
+            <form action="/killers/search/Taurus"><button>Taurus</button></form>
+            <form action="/killers/search/Gemini"><button>Gemini</button></form>
+            <form action="/killers/search/Cancer"><button>Cancer</button></form>
+            <form action="/killers/search/Leo"><button>Leo</button></form>
+            <form action="/killers/search/Virgo"><button>Virgo</button></form>
+            <form action="/killers/search/Libra"><button>Libra</button></form>
+            <form action="/killers/search/Scorpio"><button>Scorpio</button></form>
+            <form action="/killers/search/Sagittarius"><button>Sagittarius</button></form>
+            <form action="/killers/search/Capricorn"><button>Capricorn</button></form>
+            <form action="/killers/search/Aquarius"><button>Aquarius</button></form>
+            <form action="/killers/search/Pisces"><button>Pisces</button></form>
         </div>
     </div>
+</article>
+
 </article>

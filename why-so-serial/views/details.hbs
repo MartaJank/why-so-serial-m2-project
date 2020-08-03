@@ -1,18 +1,25 @@
 <div>
     <div>
         <img src="{{killer.image}}" alt="">
+        {{#if killer.numberOfVictimsConfirmed}}
         <p><b>Number of victims confirmed:</b> {{killer.numberOfVictimsConfirmed}}</p>
+        {{/if}}
+        {{#if killer.numberOfVictimsPossible}}
         <p><b>Number of victims possible:</b> {{killer.numberOfVictimsPossible}}</p>
+        {{/if}}
     </div>
     <div>
         <h1>{{killer.name}} {{killer.lastName}}</h1>
         {{#if killer.aka}}
         <p><b>A.K.A.:</b> {{killer.aka}}</p>
         {{/if}}
+        {{#if killer.birthDate}}
         <p><b>Date of Birth:</b> {{killer.birthDate}}</p>
+        {{/if}}
         {{#if killer.zodiacSign}}
         <p><b>Zodiac Sign:</b> {{killer.zodiacSign}}</p>
         {{/if}}
+        {{#if killer.yearsActive}}
         <p><b>Years Active:</b>
             {{#if killer.yearsActive.[1]}}
             {{#each killer.yearsActive}}
@@ -21,8 +28,11 @@
             {{else}}
             {{killer.yearsActive}}
             {{/if}}
+            {{/if}}
         </p>
+        {{#if killer.country}}
         <p><b>Country:</b> {{killer.country}}</p>
+        {{/if}}
         {{#if killer.arrested}}
         <p><b>Date of arrest:</b> {{killer.arrested}}</p>
         {{/if}}
@@ -30,12 +40,16 @@
 </div>
 <div>
     <article>
+        {{#if killer.description}}
         <h3>Description:</h3>
         <p>{{killer.description}}</p>
+        {{/if}}
     </article>
     <article>
+        {{#if killer.victimProfile}}
         <h3>Victim Profile:</h3>
         <p>{{killer.victimProfile}}</p>
+        {{/if}}
     </article>
     <article>
         <h3>Murder Type:</h3>
@@ -48,6 +62,7 @@
         {{/if}}
     </article>
     <article>
+        {{#if killer.weapons}}
         <h3>Weapons Used:</h3>
         {{#if killer.weapons.[1]}}
         {{#each killer.weapons}}
@@ -55,6 +70,7 @@
         {{/each}}
         {{else}}
         <p>{{killer.weapons}}</p>
+        {{/if}}
         {{/if}}
     </article>
     <article>

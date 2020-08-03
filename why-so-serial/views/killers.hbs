@@ -1,10 +1,13 @@
 <h1>Killers</h1>
-{{#each killer}}
-<a href="/killers/{{this.id}}">
+{{#if killers}}
+{{#each killers}}
+<a href="/killers/{{this._id}}">
     <img src="{{this.image}}" alt="">
-
     <p>{{this.name}} {{this.lastName}}</p>
-
 </a>
-
 {{/each}}
+<p>If you haven't found the killer you're looking for you can create one <a href="/private/add-killer">here</a>!</p>
+{{else}}
+<p>Sorry, there are no killers that fit into this parameters. <a href="/private/add-killer">But you can create one
+        here!</a></p>
+{{/if}}

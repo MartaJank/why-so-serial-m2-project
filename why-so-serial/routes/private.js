@@ -1,21 +1,26 @@
 var express = require('express');
 var router = express.Router();
 
-const Killer = require('../models/Killer');
-const User = require('../models/User');
 const parser = require('./../config/cloudinary');
 
+const Killer = require('../models/Killer');
+const User = require('../models/User');
 
+
+
+
+/* Session Middleware */
 router.use((req, res, next) => {
     if (req.session.currentUser) {
         next();
         return;
     }
-
     res.redirect('/login');
 });
 
-/* router.get('/killers', (req, res, next) => {
+/* Add & Edit killers */
+
+/*router.get('/killers', (req, res, next) => {
     Killer.find()
         .then(allKillers => {
             res.render('killers', { killers: allKillers });
@@ -23,7 +28,7 @@ router.use((req, res, next) => {
         .catch(error => {
             console.log('Error:', error);
         });
-}); */
+});*/
 
 router.get('/add-killer', (req, res, next) => {
     res.render('private/add-killer');
@@ -96,37 +101,26 @@ router.post('/edit-killer', (req, res, next) => {
         });
 });
 
-/* router.get('/killer/:killerId', (req, res, next) => {
-    Killer.findById(req.params.killerId)
-        .then(theKiller => {
-            res.render('killer-details', { killer: theKiller });
+/* USER PROFILE */
+
+router.get('/profile/:userId', (req, res, next) => {
+    let userId = req.params.userId
+    User.findById(userId)
+        .populate("killersCreated")
+        .then((user) => {
+            res.render('private/profile', { user });
         })
         .catch(error => {
             console.log('error:', error);
         });
-}); */
+}); * /
 
-
-
-
-
-router.get('/profile/:id', (req, res, next) => {
-    const userId = req.params.id;
-
-    User.findById(userId, (err, theUser) => {
-        if (err) {
-            next(err);
-            return;
-        }
-        res.render('profile', { user: theUser });
-    })
-});
 
 router.get('/profile/:userId/edit', (req, res, next) => {
-    let userId = req.params.userId;
+    const userId = req.session.currentUser._id
     User.findOne({ '_id': userId })
         .then((user) => {
-            res.render('profile', { user })
+            res.render('private/edit-user', { user })
         })
         .catch((err) => {
             console.log(err)
@@ -139,13 +133,15 @@ router.post('/profile/:userId/edit', parser.single('profilepic'), (req, res, nex
     let userId = req.params.userId;
     const image_url = req.file.secure_url;
 
-    User.update(
+    console.log(req.file)
+
+    User.findByIdAndUpdate(
         { _id: userId },
-        { $set: { name, email, password, profilepic: image_url } },
+        { $set: { name, email, password, image: image_url } },
         { new: true }
     )
         .then((user) => {
-            res.redirect("/profile/:id");
+            res.redirect(`/private/profile/${userId}`);
         })
         .catch((error) => {
             console.log(error)
