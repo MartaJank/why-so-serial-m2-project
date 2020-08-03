@@ -1,0 +1,70 @@
+<div>
+    <div>
+        <img src="{{killer.image}}" alt="">
+        <p><b>Number of victims confirmed:</b> {{killer.numberOfVictimsConfirmed}}</p>
+        <p><b>Number of victims possible:</b> {{killer.numberOfVictimsPossible}}</p>
+    </div>
+    <div>
+        <h1>{{killer.name}} {{killer.lastName}}</h1>
+        {{#if killer.aka}}
+        <p><b>A.K.A.:</b> {{killer.aka}}</p>
+        {{/if}}
+        <p><b>Date of Birth:</b> {{killer.birthDate}}</p>
+        {{#if killer.zodiacSign}}
+        <p><b>Zodiac Sign:</b> {{killer.zodiacSign}}</p>
+        {{/if}}
+        <p><b>Years Active:</b> 
+        {{#if killer.yearsActive.[1]}}
+            {{#each killer.yearsActive}}
+                {{#if @first}}{{this}}{{/if}} {{#if @last}}- {{this}}{{/if}}
+            {{/each}}
+        {{else}}
+            {{killer.yearsActive}}
+        {{/if}}
+        </p>
+        <p><b>Country:</b> {{killer.country}}</p>
+        {{#if killer.arrested}}
+        <p><b>Date of arrest:</b> {{killer.arrested}}</p>
+        {{/if}}
+    </div>
+</div>
+<div>
+    <article>
+        <h3>Description:</h3>
+        <p>{{killer.description}}</p>
+    </article>
+    <article>
+        <h3>Victim Profile:</h3>
+        <p>{{killer.victimProfile}}</p>
+    </article>
+    <article>
+        <h3>Murder Type:</h3>
+        {{#if killer.murderType.[1]}}
+            {{#each killer.murderType}}
+                <p>{{#unless @last}}{{this}} |&nbsp;{{/unless}}{{#if @last}}{{this}}{{/if}}</p>
+            {{/each}}
+        {{else}}
+            <p>{{killer.murderType}}</p>
+        {{/if}}
+    </article>
+    <article>
+        <h3>Weapons Used:</h3>
+        {{#if killer.weapons.[1]}}
+            {{#each killer.weapons}}
+                <p>{{#unless @last}}{{this}} |&nbsp;{{/unless}}{{#if @last}}{{this}}{{/if}}</p>
+            {{/each}}
+        {{else}}
+            <p>{{killer.weapons}}</p>
+        {{/if}}
+    </article>
+    <article>
+        {{#if killer.books.[0]}}
+            <h3>Books:</h3>
+            {{#each killer.books}}
+            <p>- {{this}}</p>
+            {{/each}}
+        {{/if}}
+    </article>
+</div>
+<a href="/killers">Back to Serial Killers</a>
+

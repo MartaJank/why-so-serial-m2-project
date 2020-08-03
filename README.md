@@ -1,6 +1,6 @@
 # Why so Serial?
 
-![logo]()
+![logo](./why-so-serial/public/images/Untitled.png)
 
 ## Description
 
@@ -29,27 +29,26 @@ Search and collaborative Data Base platform for Serial Killers in which you can 
 
 ## Server Routes (back-end) 
 
-| **Method** | **Route**                  | **Description**                                              | **Request - Body **                                          |
+| **Method** | **Route**                  | **Description**                                              | **Request - Body**                                          |
 | ---------- | -------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | `GET`      | `/`                        | Main page route. Renders home `index` view.                  |                                                              |
 | `GET`      | `/killers`                 | Renders `killers` view.                                      |                                                              |
 | `GET`      | `/killers/details/:id`     | Renders `details` view.                                      |                                                              |
-| `DELETE`   | `/killers/details/:id`     | Executes delete button function and updated DB. Redirects to `killers` view. |                                                              |
-| `POST`     | `/killers/details/:id`     | Sends comments form data to the server, updates DB and renders `details` view. | {author, comment}                                            |
+| `DELETE`   | `/private/delete-killer/:id`     | Executes delete button function and updated DB. Redirects to `killers` view. |                                                              |
+| `POST`     | `/private/review-killer/:id`     | Sends comments form data to the server, updates DB and renders `details` view. | {author, comment}                                            |
 | `GET`      | `/login`                   | Renders `auth/login` form view.                              |                                                              |
 | `POST`     | `/login`                   | Sends Log In form data to the server and redirects to `profile` view. | {email, password}                                            |
 | `GET`      | `/signup`                  | Renders `auth/signup` form view.                             |                                                              |
 | `POST`     | `/signup`                  | Sends Sign Up info to the server and creates user in the DB. Redirects to `auth/login` view. | {name, email, password}                                      |
 | `GET`      | `/logout`                  | Logges user out and redirects to `index` view.               |                                                              |
-| `GET`      | `/private/profile`         | Private route. Renders `profile` view.                       |                                                              |
-| `GET`      | `/private/edit-profile`    | Private route. Renders `edit-profile` form view.             |                                                              |
-| `PUT`      | `/private/edit-profile`    | Private route. Sends edit-profile info to server and updates user in DB and in `profile` view. | {[imageUrl], name, email, password}                          |
+| `GET`      | `/private/profile/:id`         | Private route. Renders `profile` view.                       |                                                              |
+| `GET`      | `/private/profile/:id/edit`    | Private route. Renders `edit-profile` form view.             |                                                              |
+| `PUT`      | `/private/profile/:id/edit`    | Private route. Sends edit-profile info to server and updates user in DB and in `profile` view. | {[imageUrl], name, email, password}                          |
 | `GET`      | `/private/add-killer`      | Private route. Renders `add-killer` form view.               |                                                              |
 | `POST`     | `/private/add-killer`      | Private route. Sends add-killer info to server and creates killer in DB. | {[imageUrl], author, name, lastName, aka, gender, birthDate, zodiacSign, yearsActive, numberOfVictimsConfirmed, numberOfVictimsPossible, country, weapons, arrested, victimProfile, murderType, description, books} |
 | `GET`      | `/private/edit-killer/:id` | Private route. Renders `edit-killer` form view.              |                                                              |
 | `PUT`      | `/private/edit-killer/:id` | Private route. Sends edit-killer info to server and updates killer in DB and in `killers` view. | {[imageUrl], author, name, lastName, aka, gender, birthDate, zodiacSign, yearsActive, numberOfVictimsConfirmed, numberOfVictimsPossible, country, weapons, arrested, victimProfile, murderType, description, books} |
 | `GET`      | `/private/cluedo`          | Private route. Renders `cluedo` view.                        |                                                              |
-| `POST`     | `/private/cluedo`          | Private route. Sends info from search bar and renders `cluedo-answer` view. | {searchInfo}                                                 |
 
 
 
@@ -60,7 +59,7 @@ Serial Killer model
 ```javascript
 {
   "image": String,
-  "author": String,
+  "author": { type: Schema.Types.ObjectId, ref: 'User' },
   "name": String,
   "lastName": String,
   "aka": String,
@@ -86,10 +85,11 @@ User model
 
 ```javascript
 {
-  "image": String,
+  "image": { type: String, default: '../images/avatar.png' },
   "name": String,
   "email": String,
-  "password": Strin
+  "password": String,
+  "isAuthor": { type: Boolean, default: false }
 }
 ```
 
@@ -99,8 +99,9 @@ Comment model
 
 ```javascript
 {
-  "author": String,
-  "comment": String
+  "author": { type: Schema.Types.ObjectId, ref: 'User' },
+  "comment": String,
+  "killerReviewed": { type: Schema.Types.ObjectId, ref: 'Killer' }
 }
 ```
 
