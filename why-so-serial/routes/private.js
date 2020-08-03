@@ -15,7 +15,7 @@ router.use((req, res, next) => {
     res.redirect('/login');
 });
 
-router.get('/killers', (req, res, next) => {
+/* router.get('/killers', (req, res, next) => {
     Killer.find()
         .then(allKillers => {
             res.render('killers', { killers: allKillers });
@@ -23,17 +23,19 @@ router.get('/killers', (req, res, next) => {
         .catch(error => {
             console.log('Error:', error);
         });
-});
+}); */
 
 router.get('/add-killer', (req, res, next) => {
     res.render('private/add-killer');
 });
 
 
-router.post('/add-killer', (req, res, next) => {
-    const { name, lastName, aka, gender, murderType, author } = req.body;
-    /* const userId = req.session.currentUser._id; */
-    const newKiller = new Killer({ name, lastName, aka, gender, murderType });
+router.post('/add-killer', parser.single('photo'), (req, res, next) => {
+    const { name, lastName, aka, gender, murderType } = req.body;
+    const imgPath = req.file.url;
+    const userId = req.session.currentUser._id;
+    const userInfo = { isAuthor: true };
+    const newKiller = new Killer({ name, lastName, aka, gender, murderType, author: userId, image: imgPath });
     if (name === '' || lastName === '' || murderType === '') {
         res.render('private/add-killer', { errorMessage: 'The fields: author, name, last name and murder type are required' });
         return;
@@ -46,15 +48,23 @@ router.post('/add-killer', (req, res, next) => {
             }
             newKiller.save()
                 .then((killer) => {
-                    res.redirect('/killers');
+                    User.findByIdAndUpdate(userId, { $set: userInfo, $push: { killersCreated: killer._id } }, { new: true })
+                        .then((user) => {
+                            req.session.currentUser = user;
+                            res.redirect('/killers');
+                        })
+                        .catch((err) => {
+                            next(err);
+                        });
                 })
                 .catch((err) => {
                     res.render('private/add-killer', { errorMessage: 'Error creating the new Serial Killer' });
                 });
         })
         .catch((err) => {
-            next(err);
+
         });
+
 
 
 
@@ -66,7 +76,7 @@ router.get('/edit-killer', (req, res, next) => {
             res.render('private/edit-killer', { killer });
         })
         .catch((err) => {
-            console.log(error);
+            next(err);
         });
 
 });
@@ -113,7 +123,7 @@ router.get('/profile/:id', (req, res, next) => {
 });
 
 router.get('/profile/:userId/edit', (req, res, next) => {
-    let userId = req.params.userId
+    let userId = req.params.userId;
     User.findOne({ '_id': userId })
         .then((user) => {
             res.render('profile', { user })

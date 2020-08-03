@@ -9,7 +9,7 @@
                 </p>
                 {{/if}}
             </div>
-            <form class="form" action="/add-killer" method="post">
+            <form class="form" action="/private/add-killer" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <input class="form-input" type="text" name="name" id="name-input" placeholder="Name">
                     <label class="form-label" for="name-input">Killer's Name</label>
@@ -32,8 +32,8 @@
                     <label class="form-label" for="murderType-input">Murder Type</label>
                 </div>
                 <div class="form-group">
-                    <input class="form-input" type="text" name="author" id="author-input" placeholder="Your Name">
-                    <label class="form-label" for="author-input">Your Name</label>
+                    <label class="form-label" for="photo-input">Poster</label>
+                    <input class="form-input" type="file" name="photo" id="photo-input">
                 </div>
                 <div class="form-group">
                     <button class="btn">Add</button>

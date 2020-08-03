@@ -8,13 +8,6 @@ router.get('/', (req, res, next) => {
   res.render('index');
 });
 
-/*router.get('/killers/:killer', (req, res, next) => {
-  let killer = req.params.killer
-  Killer.find({killer}, {
-    lastName: /^{:killer}/
-  })
-  res.render('killers', {killer})
-})*/
 
 router.get('/killers', async (req, res, next) => {
   try {

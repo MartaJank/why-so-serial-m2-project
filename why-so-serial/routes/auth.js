@@ -25,7 +25,7 @@ router.post('/signup', (req, res, next) => {
         return;
     }
 
-    if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(email)) {
+    if (!isValid) {
         res.render('auth/signup', { errorMessage: 'Invalid email' });
         return;
     }
@@ -43,8 +43,9 @@ router.post('/signup', (req, res, next) => {
             const hashPassword = bcrypt.hashSync(password, salt);
 
             User.create({ name, email, password: hashPassword })
-                .then(() => {
-                    res.redirect('/login');
+                .then((userCreated) => {
+                    req.session.currentUser = userCreated;
+                    res.redirect(`/private/profile/${userCreated._id}`);
                 })
                 .catch((err) => {
                     res.render('auth/signup', { errorMessage: 'Error creating account' });

@@ -13,14 +13,14 @@
         {{#if killer.zodiacSign}}
         <p><b>Zodiac Sign:</b> {{killer.zodiacSign}}</p>
         {{/if}}
-        <p><b>Years Active:</b> 
-        {{#if killer.yearsActive.[1]}}
+        <p><b>Years Active:</b>
+            {{#if killer.yearsActive.[1]}}
             {{#each killer.yearsActive}}
-                {{#if @first}}{{this}}{{/if}} {{#if @last}}- {{this}}{{/if}}
+            {{#if @first}}{{this}}{{/if}} {{#if @last}}- {{this}}{{/if}}
             {{/each}}
-        {{else}}
+            {{else}}
             {{killer.yearsActive}}
-        {{/if}}
+            {{/if}}
         </p>
         <p><b>Country:</b> {{killer.country}}</p>
         {{#if killer.arrested}}
@@ -40,31 +40,31 @@
     <article>
         <h3>Murder Type:</h3>
         {{#if killer.murderType.[1]}}
-            {{#each killer.murderType}}
-                <p>{{#unless @last}}{{this}} |&nbsp;{{/unless}}{{#if @last}}{{this}}{{/if}}</p>
-            {{/each}}
+        {{#each killer.murderType}}
+        <p>{{#unless @last}}{{this}} |&nbsp;{{/unless}}{{#if @last}}{{this}}{{/if}}</p>
+        {{/each}}
         {{else}}
-            <p>{{killer.murderType}}</p>
+        <p>{{killer.murderType}}</p>
         {{/if}}
     </article>
     <article>
         <h3>Weapons Used:</h3>
         {{#if killer.weapons.[1]}}
-            {{#each killer.weapons}}
-                <p>{{#unless @last}}{{this}} |&nbsp;{{/unless}}{{#if @last}}{{this}}{{/if}}</p>
-            {{/each}}
+        {{#each killer.weapons}}
+        <p>{{#unless @last}}{{this}} |&nbsp;{{/unless}}{{#if @last}}{{this}}{{/if}}</p>
+        {{/each}}
         {{else}}
-            <p>{{killer.weapons}}</p>
+        <p>{{killer.weapons}}</p>
         {{/if}}
     </article>
     <article>
         {{#if killer.books.[0]}}
-            <h3>Books:</h3>
-            {{#each killer.books}}
-            <p>- {{this}}</p>
-            {{/each}}
+        <h3>Books:</h3>
+        {{#each killer.books}}
+        <p>- {{this}}</p>
+        {{/each}}
         {{/if}}
     </article>
 </div>
+<a href="/private/edit-killer?killer_id={{killer._id}}">Edit</a>
 <a href="/killers">Back to Serial Killers</a>
-
