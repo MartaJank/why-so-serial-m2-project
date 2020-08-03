@@ -35,6 +35,7 @@ mongoose
   .catch(err => {
     console.error('Error connecting to mongo', err);
   });
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -44,6 +45,27 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({
+  secret: 'never walk alone again',
+  resave: true,
+  saveUninitialized: true,
+  cookie: { maxAge: 60000 },
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 24 * 60 * 60
+  })
+}));
+
+app.use((req, res, next) => {
+  if (req.session.currentUser) {
+    res.locals.currentUserInfo = req.session.currentUser;
+    res.locals.isUserLoggedIn = true;
+  } else {
+    res.locals.isUserLoggedIn = false;
+  }
+  next();
+});
 
 app.use('/private', privateRouter);
 app.use('/', indexRouter);

@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+
 const bcrypt = require('bcrypt');
 const saltRound = 10;
 
@@ -30,9 +31,6 @@ router.post('/signup', (req, res, next) => {
         return;
     }
 
-
-
-
     User.findOne({ email })
         .then((foundUser) => {
             if (foundUser) {
@@ -43,8 +41,9 @@ router.post('/signup', (req, res, next) => {
             const hashPassword = bcrypt.hashSync(password, salt);
 
             User.create({ name, email, password: hashPassword })
-                .then(() => {
-                    res.redirect('/login');
+                .then((userCreated) => {
+                    req.session.currentUser = userCreated
+                    res.redirect(`/private/profile/${userCreated._id}`);
                 })
                 .catch((err) => {
                     res.render('auth/signup', { errorMessage: 'Error creating account' });
@@ -53,9 +52,6 @@ router.post('/signup', (req, res, next) => {
         })
         .catch((err) => console.log(err));
 });
-
-
-
 
 
 
